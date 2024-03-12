@@ -74,7 +74,7 @@ const Homepage = () => {
       console.log("User ID:", user._id);
       setLoading(true);
       if (editable) {
-        await axios.post("/api/v1/transections/edit", {
+        await axios.post("http://localhost:8080/api/v1/transections/edit", {
           payload: {
             ...values,
             userId: user._id,
@@ -89,7 +89,7 @@ const Homepage = () => {
         }, 1000);
         message.success("Transaction Edit successfully");
       } else {
-        await axios.post("/api/v1/transections/add-data", {
+        await axios.post("http://localhost:8080/api/v1/transections/add-data", {
           ...values,
           userid: user._id,
         });
@@ -118,7 +118,7 @@ const Homepage = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         setLoading(true);
-        const res = await axios.post("/api/v1/transections/getall", {
+        const res = await axios.post("http://localhost:8080/api/v1/transections/getall", {
           userid: user._id,
           frequency,
           selectDate,
@@ -139,7 +139,7 @@ const Homepage = () => {
   const handleDelete = async (record) => {
     try {
       setLoading(true);
-      await axios.post("/api/v1/transections/delete", { transectionId: record._id });
+      await axios.post("http://localhost:8080/api/v1/transections/delete", { transectionId: record._id });
       setLoading(false);
       
       setTimeout(() => {
